@@ -66,7 +66,7 @@ export const skillClusters = [
   {
     title: "AI & ML",
     accent: "from-emerald-500/30 to-teal-400/5",
-    items: ["Python", "Scikit-learn", "Random Forest", "Google Colab"],
+    items: ["Python", "Random Forest", "Model Evaluation", "Google Colab"],
   },
   {
     title: "Backend",
@@ -93,7 +93,6 @@ export const skillClusters = [
 /** Supported Devicon slugs for the floating background, skill icons, and tech marquee. */
 export const techIcons: { slug: string; name: string; variant?: string }[] = [
   { slug: "python", name: "Python" },
-  { slug: "scikitlearn", name: "Scikit-learn" },
   { slug: "html5", name: "HTML5" },
   { slug: "css3", name: "CSS3" },
   { slug: "javascript", name: "JavaScript" },
