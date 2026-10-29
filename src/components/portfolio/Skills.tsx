@@ -238,7 +238,7 @@ export function Skills() {
               {/* The core. */}
               <div className="core absolute left-1/2 top-1/2 grid aspect-square w-[16%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 font-bold text-[#fff] shadow-[0_0_60px_rgb(20_184_166/0.6)] sm:text-xl">
                 <span className="absolute inset-0 animate-ping rounded-full bg-purple-500/30" />
-                SA
+                {PERSON.initials}
               </div>
             </div>
           </div>
