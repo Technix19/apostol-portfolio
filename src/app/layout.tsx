@@ -32,11 +32,11 @@ export const metadata: Metadata = {
     description: "Computer Science projects, AI interests, and software engineering experience.",
     url: SITE_URL,
     siteName: "Lance Jezreel B. Apostol Portfolio",
-        locale: "en_PH",
+    locale: "en_PH",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Lance Apostol | Aspiring AI Developer",
     description: "Exploring AI development through machine learning and practical software projects.",
   },
