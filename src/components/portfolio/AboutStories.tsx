@@ -281,7 +281,7 @@ export function AboutStories() {
             <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-[#14b8a6] via-[#10b981] to-[#84cc16] text-xs font-bold text-[#fff]">
               {PERSON.initials}
             </span>
-            <span className="text-sm font-semibold">{PERSON.name}</span>
+            <span className="text-sm font-semibold">{PERSON.firstName} Apostol</span>
             <span className="text-sm text-[#ffffffb3]" aria-live="polite">
               {STORIES[current].label}
             </span>
