@@ -80,7 +80,7 @@ export function Preloader({ onReveal }: { onReveal: () => void }) {
     <div ref={root} className="fixed inset-0 z-[100] pointer-events-none" aria-hidden="true">
       <div className="preloader-panel absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500" />
       <div className="preloader-panel absolute inset-0 flex flex-col items-center justify-center bg-neutral-950 pointer-events-auto">
-        <p className="preloader-name text-5xl md:text-7xl font-bold tracking-tight">{PERSON.name}</p>
+        <p className="preloader-name text-5xl md:text-7xl font-bold tracking-tight">{PERSON.firstName} Apostol</p>
         <div className="preloader-bar-wrap mt-8 h-px w-48 bg-white/10 overflow-hidden">
           <div className="preloader-bar h-full w-full origin-left scale-x-0 bg-gradient-to-r from-blue-400 to-purple-400" />
         </div>
