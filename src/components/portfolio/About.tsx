@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import { MapPin } from "lucide-react"
 import { gsap, useGSAP, SplitText, MOTION_OK } from "@/lib/gsap"
-import { deviconUrl } from "@/data/portfolio"
+import { PERSON, deviconUrl } from "@/data/portfolio"
 import { SectionHeading } from "./SectionHeading"
 import { AboutStories } from "./AboutStories"
 import { LINES, pillars, stack, strengths } from "./aboutData"
@@ -139,23 +139,23 @@ export function About() {
             <article className="profile-card relative rounded-3xl border border-white/10 bg-neutral-900/90 p-7 md:p-8">
               <div className="card-step card-step-0 flex items-center gap-4">
                 <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-xl font-bold text-[#fff]">
-                  SA
+                  {PERSON.initials}
                 </span>
                 <div>
-                  <h3 className="text-2xl font-bold tracking-tight">Sazzad Ali</h3>
-                  <p className="text-sm text-gray-400">Designs and builds for the web</p>
+                  <h3 className="text-2xl font-bold tracking-tight">{PERSON.name}</h3>
+                  <p className="text-sm text-gray-400">Computer Science · Holy Angel University</p>
                 </div>
               </div>
 
               <p className="card-step card-step-1 mt-6 text-lg font-semibold">
                 <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Software Engineer &amp; Web Developer
+                  Computer Science Student &amp; Aspiring AI Developer
                 </span>
               </p>
 
               <p className="card-step card-step-2 mt-2 flex items-center gap-2 text-gray-300">
                 <MapPin className="h-4 w-4 text-pink-400" aria-hidden="true" />
-                Sydney, Australia
+                {PERSON.location}
               </p>
 
               <ul className="card-step card-step-3 mt-6 flex flex-wrap gap-2" aria-label="Strengths">
@@ -183,7 +183,7 @@ export function About() {
               </ul>
 
               <blockquote className="card-step card-step-5 relative mt-7 inline-block text-lg italic text-gray-200">
-                &ldquo;One line of code at a time.&rdquo;
+                &ldquo;Build, test, improve.&rdquo;
                 <span className="motto-underline absolute -bottom-1 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400" />
               </blockquote>
               <span className="card-step card-step-6 sr-only">End of profile</span>
@@ -194,14 +194,15 @@ export function About() {
         {/* Bio. */}
         <div className="about-copy mx-auto mt-16 max-w-4xl space-y-8 text-center text-xl leading-relaxed text-gray-100 md:text-3xl md:leading-snug">
           <p>
-            Software Engineer and Web Developer with a passion for building elegant, high-performance digital
-            experiences. With a strong foundation in software engineering, AI integration, UI/UX design and project
-            management, I bring both creativity and precision to every project.
+            I&apos;m a Computer Science student at Holy Angel University and a consistent
+            Dean&apos;s Lister. I&apos;m interested in building practical AI-powered software
+            and understanding how machine learning can solve real problems.
           </p>
           <p>
-            Whether it&apos;s crafting full-stack web applications, designing intuitive interfaces or delivering
-            scalable software — I thrive where design meets functionality, and make sure everything I touch is fast,
-            accessible and future-ready.
+            For our Codely thesis, we built an adaptive coding practice platform using
+            a Random Forest classifier. I&apos;ve also created landing pages and fixed API
+            issues while working with Convertly and Doodliez. I&apos;m now looking for
+            opportunities to learn and contribute as an aspiring AI developer.
           </p>
         </div>
 
