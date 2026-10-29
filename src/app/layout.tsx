@@ -15,32 +15,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://sazzadali-portfolio.vercel.app";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 const isVercel = process.env.NEXT_PUBLIC_DEPLOY_TARGET === "vercel";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Sazzad Ali | Frontend & UI/UX Engineer",
+  title: "Lance Apostol | Aspiring AI Developer",
   description:
-    "Portfolio of Sazzad Ali — Sydney-based web developer and UI designer crafting fast, animated, accessible experiences with Next.js, React and GSAP.",
-  keywords: ["Next.js", "React", "GSAP", "UI/UX", "Frontend Developer", "Web Developer", "Sydney"],
-  authors: [{ name: "Sazzad Ali", url: SITE_URL }],
-  creator: "Sazzad Ali",
+    "Portfolio of Lance Apostol, a Computer Science student exploring AI, machine learning, and software development.",
+  keywords: ["Lance Apostol", "AI Developer", "Computer Science", "Python", "Machine Learning", "Software Development", "Philippines"],
+  authors: [{ name: "Lance Jezreel B. Apostol", url: SITE_URL }],
+  creator: "Lance Jezreel B. Apostol",
   icons: { icon: { url: asset("/my-letter-favicon.svg"), type: "image/svg+xml" } },
   openGraph: {
-    title: "Sazzad Ali | Frontend & UI/UX Engineer",
-    description: "Creating immersive web experiences with React, Next.js and GSAP animation.",
+    title: "Lance Apostol | Aspiring AI Developer",
+    description: "Computer Science projects, AI interests, and software engineering experience.",
     url: SITE_URL,
-    siteName: "Sazzad Ali Portfolio",
-    images: [{ url: "/personal-portfolio.png", alt: "Sazzad Ali Portfolio Screenshot" }],
-    locale: "en_AU",
+    siteName: "Lance Jezreel B. Apostol Portfolio",
+        locale: "en_PH",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sazzad Ali | Frontend & UI/UX Engineer",
-    description: "Modern, responsive, animated websites with React, Next.js, Tailwind and GSAP.",
-    images: ["/personal-portfolio.png"],
+    title: "Lance Apostol | Aspiring AI Developer",
+    description: "Exploring AI development through machine learning and practical software projects.",
   },
   alternates: { canonical: SITE_URL },
 };
