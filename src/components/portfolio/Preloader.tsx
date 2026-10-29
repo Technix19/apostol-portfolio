@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react"
 import { PERSON } from "@/data/portfolio"
+import { PERSON } from "@/data/portfolio"
 import { gsap, useGSAP, SplitText, MOTION_OK } from "@/lib/gsap"
 
 /**
