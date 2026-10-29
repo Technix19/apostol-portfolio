@@ -1,11 +1,10 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { ChevronLeft, ChevronRight, Download, MapPin, Pause, Play } from "lucide-react"
+import { ChevronLeft, ChevronRight, MapPin, Pause, Play } from "lucide-react"
 import { gsap, useGSAP, SplitText, ScrollTrigger, Observer, scrollToTarget } from "@/lib/gsap"
-import { deviconUrl } from "@/data/portfolio"
-import { CvLink } from "./CvLink"
-import { SydneyTime } from "./Nav"
+import { PERSON, deviconUrl } from "@/data/portfolio"
+import { ManilaTime } from "./Nav"
 import { LINES, pillars, stack, strengths } from "./aboutData"
 
 const STORIES = [
@@ -280,9 +279,9 @@ export function AboutStories() {
           </div>
           <div className="mt-3 flex items-center gap-2.5">
             <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-[#14b8a6] via-[#10b981] to-[#84cc16] text-xs font-bold text-[#fff]">
-              SA
+              {PERSON.initials}
             </span>
-            <span className="text-sm font-semibold">Sazzad Ali</span>
+            <span className="text-sm font-semibold">{PERSON.name}</span>
             <span className="text-sm text-[#ffffffb3]" aria-live="polite">
               {STORIES[current].label}
             </span>
@@ -324,7 +323,7 @@ export function AboutStories() {
             </pre>
           </div>
           <p className="st-hint mt-auto text-center text-sm text-[#ffffffb3] [@media(max-height:700px)]:hidden">
-            One line of code at a time. Swipe to see what it renders →
+            Explore my developer profile. Swipe to see what it renders →
           </p>
         </section>
 
@@ -332,18 +331,18 @@ export function AboutStories() {
         <section className="story isolate absolute inset-0 flex flex-col justify-center px-5 pb-20 pt-24 [@media(max-height:700px)]:pb-16 [@media(max-height:700px)]:pt-20" aria-label={`2 of ${STORIES.length}: Profile`}>
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_30%,#14b8a659,transparent_55%),radial-gradient(circle_at_80%_80%,#10b9814d,transparent_50%)]" />
           <span className="st-avatar grid h-28 w-28 [@media(max-height:700px)]:h-20 [@media(max-height:700px)]:w-20 place-items-center rounded-[2rem] bg-gradient-to-br from-[#14b8a6] via-[#10b981] to-[#84cc16] text-4xl font-bold text-[#fff] shadow-2xl shadow-[#10b98166]">
-            SA
+            {PERSON.initials}
           </span>
-          <h3 className="st-item mt-8 text-5xl [@media(max-height:700px)]:mt-5 font-bold tracking-tight">Sazzad Ali</h3>
+          <h3 className="st-item mt-8 text-4xl sm:text-5xl [@media(max-height:700px)]:mt-5 font-bold tracking-tight">{PERSON.name}</h3>
           <p className="st-item mt-3 bg-gradient-to-r from-[#2dd4bf] to-[#34d399] bg-clip-text text-xl font-semibold text-transparent">
-            Software Engineer &amp; Web Developer
+            Computer Science Student &amp; Aspiring AI Developer
           </p>
           <p className="st-item mt-4 flex items-center gap-2 text-lg text-[#e2e8f0]">
             <MapPin className="h-5 w-5 text-[#a3e635]" aria-hidden="true" />
-            Sydney, Australia
+            {PERSON.location}
           </p>
           <p className="st-item mt-2 font-mono text-sm text-[#94a3b8]">
-            Local time <SydneyTime />
+            Local time <ManilaTime />
           </p>
         </section>
 
@@ -374,9 +373,9 @@ export function AboutStories() {
         <section className="story isolate absolute inset-0 flex flex-col justify-center px-5 pb-20 pt-24 [@media(max-height:700px)]:pb-16 [@media(max-height:700px)]:pt-20" aria-label={`4 of ${STORIES.length}: My story`}>
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_80%,#84cc164d,transparent_55%)]" />
           <p className="st-words text-[1.6rem] font-semibold leading-snug tracking-tight [@media(max-height:700px)]:text-[1.3rem]">
-            Software engineer and web developer with a passion for building elegant, high-performance digital
-            experiences. AI integration, UI/UX design and project management: creativity and precision in every
-            project.
+            I&apos;m a Computer Science student at Holy Angel University and a consistent Dean&apos;s Lister.
+             I worked on Codely, an adaptive coding platform powered by a Random Forest model,
+             and gained practical experience building landing pages and troubleshooting APIs.
           </p>
         </section>
 
@@ -420,7 +419,7 @@ export function AboutStories() {
         {/* 6. Motto */}
         <section className="story isolate absolute inset-0 flex flex-col justify-end bg-gradient-to-br from-[#0d9488] via-[#059669] to-[#65a30d] px-6 pb-24 pt-24 [@media(max-height:700px)]:pb-20 [@media(max-height:700px)]:pt-20" aria-label={`6 of ${STORIES.length}: Motto`}>
           <p className="st-motto text-[3.4rem] font-bold leading-[0.95] tracking-[-0.03em] text-[#fff] [&_div]:align-top">
-            One line of code at a time.
+            Build, test, improve.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 [@media(max-height:700px)]:mt-6">
             <button
@@ -430,10 +429,13 @@ export function AboutStories() {
             >
               Let&apos;s talk
             </button>
-            <CvLink className="st-cta flex items-center gap-2 rounded-full px-6 py-3 font-semibold text-[#fff] ring-2 ring-[#ffffffa6]">
-              <Download className="h-4 w-4" aria-hidden="true" />
-              Preview CV
-            </CvLink>
+            <button
+              type="button"
+              onClick={() => scrollToTarget("#projects")}
+              className="st-cta rounded-full px-6 py-3 font-semibold text-[#fff] ring-2 ring-[#ffffffa6]"
+            >
+              View projects
+            </button>
           </div>
         </section>
 
