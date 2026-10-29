@@ -1,14 +1,12 @@
 "use client"
 
 import { useRef } from "react"
-import { ChevronDown, Download, Github, Linkedin, Mail } from "lucide-react"
+import { ChevronDown, Github, Mail } from "lucide-react"
 import { gsap, useGSAP, SplitText, MOTION_OK, scrollToTarget } from "@/lib/gsap"
-import { roles, socials } from "@/data/portfolio"
-import { CvLink } from "./CvLink"
+import { PERSON, roles, socials } from "@/data/portfolio"
 import { Magnetic } from "./Magnetic"
 
 const socialLinks = [
-  { href: socials.linkedin, label: "LinkedIn", Icon: Linkedin, hover: "hover:border-blue-400 hover:bg-blue-400/10" },
   { href: socials.github, label: "GitHub", Icon: Github, hover: "hover:border-purple-400 hover:bg-purple-400/10" },
   { href: socials.email, label: "Email", Icon: Mail, hover: "hover:border-pink-400 hover:bg-pink-400/10" },
 ]
@@ -105,14 +103,14 @@ export function Hero({ ready }: { ready: boolean }) {
         className="hero-marquee pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 select-none whitespace-nowrap text-[18vw] font-black uppercase leading-none text-transparent opacity-[0.06] [-webkit-text-stroke:1px_var(--color-white)]"
         aria-hidden="true"
       >
-        Creative Developer · Creative Developer
+        AI & Software Development · AI & Software Development
       </p>
 
       <div className="hero-content invisible relative z-10 mx-auto max-w-5xl text-center">
         <h1 className="mb-6 text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
           <span className="hero-greeting inline-block align-top [&>div]:align-top">Hi, I&apos;m</span>{" "}
           <span className="hero-name inline-block align-top bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-[length:200%_auto] bg-clip-text pb-2 text-transparent">
-            Sazzad
+            {PERSON.firstName}
           </span>
         </h1>
 
@@ -121,8 +119,8 @@ export function Hero({ ready }: { ready: boolean }) {
           <span className="ml-1 animate-pulse text-purple-400">_</span>
         </p>
 
-        <p className="hero-sub mx-auto mb-3 max-w-xl text-lg text-gray-300 md:text-2xl">from Sydney, Australia</p>
-        <p className="hero-sub mb-12 text-base italic text-gray-500 md:text-lg">&ldquo;One Line of Code at a Time&rdquo;</p>
+        <p className="hero-sub mx-auto mb-3 max-w-xl text-lg text-gray-300 md:text-2xl">from {PERSON.location}</p>
+        <p className="hero-sub mb-12 text-base italic text-gray-500 md:text-lg">&ldquo;{PERSON.motto}&rdquo;</p>
 
         <div className="hero-cta mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Magnetic>
@@ -134,10 +132,13 @@ export function Hero({ ready }: { ready: boolean }) {
             </button>
           </Magnetic>
           <Magnetic>
-            <CvLink className="flex items-center gap-2 rounded-full border border-blue-500/60 px-8 py-4 font-semibold transition-colors hover:bg-blue-500/10">
-              <Download className="h-4 w-4" />
-              Preview CV
-            </CvLink>
+            <button
+              type="button"
+              onClick={() => scrollToTarget("#projects")}
+              className="flex items-center gap-2 rounded-full border border-blue-500/60 px-8 py-4 font-semibold transition-colors hover:bg-blue-500/10"
+            >
+              View Projects
+            </button>
           </Magnetic>
         </div>
 
