@@ -185,7 +185,7 @@ export function Projects() {
     <section ref={root} id="projects" className="relative px-6 py-10 md:py-14 lg:overflow-x-clip">
       <div className="projects-head mx-auto w-full max-w-7xl">
         <SectionHeading eyebrow="02 — Selected work" lead="My" accent="Projects" lag={false}>
-          A collection of projects that showcase my skills and passion for creating exceptional digital experiences.
+          A selection of my academic and personal work as I build toward a career in AI development.
         </SectionHeading>
       </div>
 

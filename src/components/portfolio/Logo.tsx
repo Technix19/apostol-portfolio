@@ -3,7 +3,9 @@
 import { useRef } from "react"
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap"
 
-const NAME = "Sazzad Ali"
+import { PERSON } from "@/data/portfolio"
+
+const NAME = "Lance Apostol"
 
 /**
  * Solid wordmark. Letters rise out of a mask when the preloader lifts; on hover each
@@ -47,7 +49,7 @@ export function Logo({ ready, onClick }: { ready: boolean; onClick: (e: React.Mo
       onPointerLeave={() => roll(false)}
       onFocus={() => roll(true)}
       onBlur={() => roll(false)}
-      aria-label="Sazzad Ali — back to top"
+      aria-label={`${PERSON.name} — back to top`}
       className="flex items-center gap-1 text-2xl font-bold leading-none tracking-tight md:text-[1.7rem]"
     >
       <span className="flex" aria-hidden="true">

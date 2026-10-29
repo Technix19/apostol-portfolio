@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react"
 import { gsap, useGSAP, ScrollTrigger, MOTION_OK } from "@/lib/gsap"
-import { deviconUrl, skillClusters, techIcons } from "@/data/portfolio"
+import { PERSON, deviconUrl, skillClusters, techIcons } from "@/data/portfolio"
 import { SectionHeading } from "./SectionHeading"
 
 const INVERT = new Set(["nextjs", "express", "vercel"])
@@ -17,7 +17,7 @@ function iconFor(name: string) {
 
 // Orbits, inner to outer. Radius is a fraction of the galaxy's width; `dir` alternates.
 const ORBITS = [
-  { title: "App Development", radius: 0.27, color: "#34d399", period: 38, dir: 1 },
+  { title: "AI & ML", radius: 0.27, color: "#34d399", period: 38, dir: 1 },
   { title: "Backend", radius: 0.44, color: "#fb7185", period: 54, dir: -1 },
   { title: "Frontend", radius: 0.61, color: "#60a5fa", period: 70, dir: 1 },
   { title: "Dev Tools", radius: 0.78, color: "#fbbf24", period: 90, dir: -1 },
@@ -238,7 +238,7 @@ export function Skills() {
               {/* The core. */}
               <div className="core absolute left-1/2 top-1/2 grid aspect-square w-[16%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 font-bold text-[#fff] shadow-[0_0_60px_rgb(20_184_166/0.6)] sm:text-xl">
                 <span className="absolute inset-0 animate-ping rounded-full bg-purple-500/30" />
-                SA
+                {PERSON.initials}
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowUpRight, Github, Mail } from "lucide-react"
 import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, scrollToTarget, MOTION_OK } from "@/lib/gsap"
 import { EMAIL, navItems, socials } from "@/data/portfolio"
 import { Logo } from "./Logo"
@@ -11,12 +11,12 @@ import { ThemeToggle } from "./ThemeToggle"
 
 const pad = (n: number) => String(n + 1).padStart(2, "0")
 
-/** Live Sydney time; rendered client-side only to avoid a hydration mismatch. */
-export function SydneyTime() {
+/** Live Philippine time; rendered client-side only to avoid a hydration mismatch. */
+export function ManilaTime() {
   const [time, setTime] = useState<string | null>(null)
   useEffect(() => {
-    const fmt = new Intl.DateTimeFormat("en-AU", {
-      timeZone: "Australia/Sydney",
+    const fmt = new Intl.DateTimeFormat("en-PH", {
+      timeZone: "Asia/Manila",
       hour: "2-digit",
       minute: "2-digit",
       hour12: true,
@@ -174,7 +174,7 @@ export function Nav({ ready }: { ready: boolean }) {
 
           <div className="flex items-center gap-3 md:gap-4">
             <span className="nav-side hidden items-center gap-2 font-mono text-xs uppercase tracking-widest text-gray-400 lg:flex">
-              Sydney <SydneyTime />
+              Philippines <ManilaTime />
             </span>
             <ThemeToggle className="nav-side relative z-10" />
             <div className="nav-side hidden md:block">
@@ -245,7 +245,6 @@ export function Nav({ ready }: { ready: boolean }) {
           <div className="mobile-meta flex items-center justify-between">
             <div className="flex gap-3">
               {[
-                { href: socials.linkedin, label: "LinkedIn", Icon: Linkedin },
                 { href: socials.github, label: "GitHub", Icon: Github },
                 { href: socials.email, label: "Email", Icon: Mail },
               ].map(({ href, label, Icon }) => (
@@ -262,7 +261,7 @@ export function Nav({ ready }: { ready: boolean }) {
               ))}
             </div>
             <span className="font-mono text-xs uppercase tracking-widest text-gray-500">
-              Sydney <SydneyTime />
+              Philippines <ManilaTime />
             </span>
           </div>
         </div>

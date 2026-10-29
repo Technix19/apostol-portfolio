@@ -1,16 +1,34 @@
-export const EMAIL = "find.sazzadali@gmail.com"
+/**
+ * Portfolio content. Keep personal claims accurate and add live project links
+ * only when the corresponding demos or repositories are ready to share.
+ */
+export const PERSON = {
+  name: "Lance Jezreel B. Apostol",
+  firstName: "Lance",
+  initials: "LA",
+  location: "Guagua, Pampanga, Philippines",
+  role: "Computer Science Student & Aspiring AI Developer",
+  motto: "Building useful software, one problem at a time.",
+} as const
 
-export const CV_PATH = "/Sazzad-ALI_CV.pdf"
+export const EMAIL = "lanceapostol04@gmail.com"
+
+/** No finalized PDF is available yet; the CV button is intentionally hidden. */
+export const CV_PATH = ""
 
 export const socials = {
-  linkedin: "https://www.linkedin.com/in/sazzadali/",
-  github: "https://github.com/ali-sazzad",
+  github: "https://github.com/Technix19",
   email: `mailto:${EMAIL}`,
 }
 
 export const navItems = ["About", "Projects", "Skills", "Contact"] as const
 
-export const roles = ["Web Developer", "UI Designer", "Programmer", "AI Enthusiast"]
+export const roles = [
+  "Aspiring AI Developer",
+  "Computer Science Student",
+  "Machine Learning Enthusiast",
+  "Software Developer",
+]
 
 export type Project = {
   title: string
@@ -24,165 +42,72 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Makura Creations Redesign",
+    title: "Codely — Adaptive Coding Practice",
     description:
-      "A website redesign for a Lalitpur digital studio: a typographic hero over an animated Three.js line field, with GSAP motion running through services, work and testimonials.",
-    image: "/makura.png",
-    tags: ["Next.js", "TypeScript", "GSAP", "Three.js"],
-    link: "https://ali-sazzad.github.io/Makura-Site-Redesign/",
-    github: "https://github.com/ali-sazzad/Makura-Site-Redesign",
+      "Our undergraduate thesis project: a coding practice platform that uses a Random Forest classifier and programming performance metrics to recommend question difficulty.",
+    tags: ["Machine Learning", "Python", "Random Forest", "PostgreSQL", "Judge0"],
   },
   {
-    title: "Shareef's Daily Checklists",
+    title: "REST API Development",
     description:
-      "Mobile-first opening and closing checklists for restaurant front and back of house: temperature capture, autosaved drafts, signatures and PDF reports, installable as a PWA.",
-    image: "/shareefs-checklists.png",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "PWA"],
-    link: "https://daily-shift-checklists-aus.vercel.app/",
-    github: "https://github.com/ali-sazzad/shareefs-checklists",
+      "An academic backend project implementing CRUD endpoints with Node.js and Express, PostgreSQL integration, and in-memory IP rate limiting.",
+    tags: ["Node.js", "Express", "PostgreSQL", "REST API"],
   },
   {
-    title: "Digital Pragati",
+    title: "Personal Portfolio (In Progress)",
     description:
-      "Lead-generation websites for Nepali-owned businesses in Australia and Nepal: a fast Next.js site, a static build and an enquiry backend, measured on real Core Web Vitals.",
-    image: "/digital-pragati.png",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Lead Generation"],
-    link: "https://ali-sazzad.github.io/digital-pragati/",
-    github: "https://github.com/ali-sazzad/digital-pragati",
-  },
-  {
-    title: "JobTrack",
-    description:
-      "A job application tracker that feels like a real internal tool: CRUD, filters and sort, pipeline insights, accessible dialogs, skeleton loaders and localStorage persistence.",
-    image: "/job-track.png",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
-    link: "https://ali-sazzad.github.io/job-track/",
-    github: "https://github.com/ali-sazzad/job-track",
-  },
-  {
-    title: "SiteBazaar",
-    description:
-      "A website marketplace designed like an auction house: live bidding, buy-now checkout and GSAP motion throughout.",
-    image: "/sitebazaar.png",
-    tags: ["Next.js", "TypeScript", "shadcn/ui", "GSAP"],
-    link: "https://sitebazaar.vercel.app",
-    github: "https://github.com/ali-sazzad/sitebazaar",
-  },
-  {
-    title: "Personal Portfolio",
-    description:
-      "This site. A cinematic, GSAP-driven portfolio built with Next.js — smooth scrolling, split-text reveals, pinned horizontal scroll and more.",
-    image: "/personal-portfolio.png",
+      "My developer portfolio, customized from an open-source Next.js and GSAP template to showcase my academic work, technical interests, and journey into AI development.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP"],
-    link: "https://sazzadali-portfolio.vercel.app/",
-    github: "https://github.com/ali-sazzad/sazzadali-portfolio",
-  },
-  {
-    title: "Brainwave with React on Vite",
-    description:
-      "A sleek, high-performance single-page web app built with React on Vite, engineered for speed and a seamless user experience.",
-    image: "/brainwave-reactvite.png",
-    tags: ["React", "Vite", "JavaScript", "CSS"],
-    link: "https://brainwave-reactvite.vercel.app/",
-    github: "https://github.com/ali-sazzad/brainwave-reactvite",
-  },
-  {
-    title: "Modern UI GPT-3 Frontend",
-    description:
-      "A responsive frontend inspired by GPT-3, designed with modern UI/UX principles for performance, aesthetics and seamless interaction.",
-    image: "/desktop-1.png",
-    tags: ["React", "CSS3", "HTML5"],
-    link: "https://modern-ui-ux-gpt3-frontend-website.vercel.app/",
-    github: "https://github.com/ali-sazzad/modern_ui-ux_gpt3_frontend_website",
-  },
-  {
-    title: "To-do List Web App",
-    description:
-      "A simple yet efficient to-do list built with HTML, CSS and JavaScript. Stay organised with an intuitive, responsive design.",
-    image: "/to-do-list.png",
-    tags: ["HTML5", "CSS3", "JavaScript"],
-    link: "https://simple-to-do-list-web-app-gamma.vercel.app/",
-    github: "https://github.com/ali-sazzad/simple-to-do-list-web-app",
-  },
-  {
-    title: "Bupa Email Template",
-    description:
-      "A desktop HTML/CSS email template for Bupa, informing members about tapping with iPhone or Apple Watch for Bupa services.",
-    image: "/bupa-email-template1.png",
-    tags: ["HTML5", "CSS3", "Email Template"],
-    link: "https://bupa-email-template1.vercel.app/",
-    github: "https://github.com/ali-sazzad/bupa-email-template1",
-  },
-  {
-    title: "Basic Snake Game",
-    description:
-      "The classic Snake game in HTML, CSS and JavaScript — eat, grow, and don't hit the walls or yourself. Tracks your high score.",
-    image: "/basic-snake-game.png",
-    tags: ["JavaScript", "Game", "Fun"],
-    link: "https://basic-snake-game-two.vercel.app/",
-    github: "https://github.com/ali-sazzad/basic-snake-game",
-  },
-  {
-    title: "Coming Soon",
-    description: "An exciting new project in development. Stay tuned!",
-    tags: ["In Progress"],
-    comingSoon: true,
+    github: "https://github.com/Technix19/apostol-portfolio",
   },
 ]
 
 export const skillClusters = [
   {
-    title: "Frontend",
-    accent: "from-blue-500/30 to-cyan-400/5",
-    items: ["React", "Next.js", "Tailwind", "GSAP", "TypeScript"],
+    title: "AI & ML",
+    accent: "from-emerald-500/30 to-teal-400/5",
+    items: ["Python", "Scikit-learn", "Random Forest", "Google Colab"],
   },
   {
     title: "Backend",
     accent: "from-rose-500/30 to-orange-400/5",
-    items: ["Node.js", "Express", "Firebase", "Supabase"],
+    items: ["Node.js", "Express", "PostgreSQL", "Supabase", "REST APIs"],
+  },
+  {
+    title: "Frontend",
+    accent: "from-blue-500/30 to-cyan-400/5",
+    items: ["JavaScript", "HTML5", "CSS3", "Flutter", "Dart"],
   },
   {
     title: "Dev Tools",
     accent: "from-amber-400/30 to-yellow-300/5",
-    items: ["Git", "VS Code", "Vercel", "Figma", "Android Studio"],
-  },
-  {
-    title: "App Development",
-    accent: "from-emerald-500/30 to-teal-400/5",
-    items: ["Kotlin with Compose", "Java"],
+    items: ["Git", "GitHub", "Figma", "Vercel", "VS Code"],
   },
   {
     title: "Soft Skills",
     accent: "from-purple-500/30 to-pink-400/5",
-    items: ["Problem Solving", "Collaboration", "Adaptability", "Creativity", "Fast Learner"],
+    items: ["Problem Solving", "Communication", "Teamwork", "Leadership", "Critical Thinking"],
   },
 ]
 
-/** Devicon slugs used by the floating background and the tech marquee. */
+/** Supported Devicon slugs for the floating background, skill icons, and tech marquee. */
 export const techIcons: { slug: string; name: string; variant?: string }[] = [
+  { slug: "python", name: "Python" },
+  { slug: "scikitlearn", name: "Scikit-learn" },
   { slug: "html5", name: "HTML5" },
   { slug: "css3", name: "CSS3" },
   { slug: "javascript", name: "JavaScript" },
-  { slug: "typescript", name: "TypeScript" },
-  { slug: "react", name: "React" },
-  { slug: "nextjs", name: "Next.js" },
-  { slug: "tailwindcss", name: "Tailwind" },
   { slug: "nodejs", name: "Node.js" },
   { slug: "express", name: "Express" },
-  { slug: "firebase", name: "Firebase" },
-  { slug: "supabase", name: "Supabase" },
-  { slug: "python", name: "Python" },
-  { slug: "java", name: "Java" },
-  { slug: "kotlin", name: "Kotlin" },
-  { slug: "php", name: "PHP" },
-  { slug: "mongodb", name: "MongoDB" },
   { slug: "postgresql", name: "PostgreSQL" },
-  { slug: "mysql", name: "MySQL" },
-  { slug: "graphql", name: "GraphQL", variant: "plain" },
-  { slug: "figma", name: "Figma" },
+  { slug: "supabase", name: "Supabase" },
+  { slug: "flutter", name: "Flutter" },
+  { slug: "dart", name: "Dart" },
+  { slug: "java", name: "Java" },
   { slug: "git", name: "Git" },
+  { slug: "github", name: "GitHub" },
+  { slug: "figma", name: "Figma" },
   { slug: "vscode", name: "VS Code" },
-  { slug: "androidstudio", name: "Android Studio" },
   { slug: "vercel", name: "Vercel" },
 ]
 

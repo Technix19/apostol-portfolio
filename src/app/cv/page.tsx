@@ -1,11 +1,6 @@
-import type { Metadata } from "next"
-import { CvViewer } from "@/components/cv/CvViewer"
-
-export const metadata: Metadata = {
-  title: "CV | Sazzad Ali",
-  description: "Preview the CV of Sazzad Ali, Sydney-based web developer and UI designer.",
-}
+import { redirect } from "next/navigation"
 
 export default function CvPage() {
-  return <CvViewer />
+  // The original template CV is not Lance's. Restore the viewer once his own CV is published.
+  redirect("/")
 }

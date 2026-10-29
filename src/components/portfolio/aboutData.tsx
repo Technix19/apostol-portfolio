@@ -1,74 +1,69 @@
 import type { ReactNode } from "react"
 import { Code2, PenTool, Rocket } from "lucide-react"
 
-/** Shared About content: used by the desktop scene (About.tsx) and the mobile stories. */
-
+/** Shared About content for the desktop code scene and the mobile stories. */
 export const pillars = [
-  { Icon: PenTool, title: "Design", text: "Intuitive interfaces and design systems with a strong eye for detail." },
-  { Icon: Code2, title: "Develop", text: "Full-stack web apps with React, Next.js and Node — clean, typed and fast." },
-  { Icon: Rocket, title: "Deliver", text: "Scalable, accessible products shipped with care and clear communication." },
+  { Icon: PenTool, title: "Explore", text: "Understand the problem, study the requirements, and choose an approach." },
+  { Icon: Code2, title: "Build", text: "Turn ideas into working software using code, APIs, and databases." },
+  { Icon: Rocket, title: "Improve", text: "Test, measure, troubleshoot, and refine what I build." },
 ]
 
-export const strengths = ["AI integration", "UI/UX design", "Project management"]
+export const strengths = ["Machine Learning", "API Development", "Problem Solving"]
 export const stack = [
-  { slug: "react", name: "React" },
-  { slug: "nextjs", name: "Next.js", invert: true },
+  { slug: "python", name: "Python", invert: false },
   { slug: "nodejs", name: "Node.js" },
-  { slug: "typescript", name: "TypeScript" },
+  { slug: "postgresql", name: "PostgreSQL" },
+  { slug: "flutter", name: "Flutter" },
 ]
 
-// Editor colours are fixed (code editors stay dark in both themes).
 const K = ({ children }: { children: ReactNode }) => <span className="text-[#34d399]">{children}</span>
 const V = ({ children }: { children: ReactNode }) => <span className="text-[#5eead4]">{children}</span>
 const P = ({ children }: { children: ReactNode }) => <span className="text-[#6b7280]">{children}</span>
 const S = ({ children }: { children: ReactNode }) => <span className="text-[#f9a8d4]">{children}</span>
 const key = (k: string) => <span className="text-[#7dd3fc]">{k}</span>
 
-/** One line of code per piece of the profile card it renders. */
 export const LINES: ReactNode[] = [
   <>
-    <K>const</K> <V>sazzad</V> <P>=</P> <P>{"{"}</P>
+    <K>const</K> <V>lance</V> <P>=</P> <P>{"{"}</P>
   </>,
   <>
     {"  "}
     {key("role")}
-    <P>:</P> <S>&quot;Software Engineer &amp; Web Developer&quot;</S>
+    <P>:</P> <S>&quot;Aspiring AI Developer&quot;</S>
     <P>,</P>
   </>,
   <>
     {"  "}
     {key("based")}
-    <P>:</P> <S>&quot;Sydney, Australia&quot;</S>
+    <P>:</P> <S>&quot;Pampanga, Philippines&quot;</S>
     <P>,</P>
   </>,
   <>
     {"  "}
     {key("strengths")}
     <P>: [</P>
-    <S>&quot;AI&quot;</S>
+    <S>&quot;ML&quot;</S>
     <P>, </P>
-    <S>&quot;UI/UX&quot;</S>
+    <S>&quot;APIs&quot;</S>
     <P>, </P>
-    <S>&quot;PM&quot;</S>
+    <S>&quot;Problem Solving&quot;</S>
     <P>],</P>
   </>,
   <>
     {"  "}
     {key("stack")}
     <P>: [</P>
-    <S>&quot;React&quot;</S>
+    <S>&quot;Python&quot;</S>
     <P>, </P>
-    <S>&quot;Next.js&quot;</S>
+    <S>&quot;Node.js&quot;</S>
     <P>, </P>
-    <S>&quot;Node&quot;</S>
-    <P>, </P>
-    <S>&quot;TS&quot;</S>
+    <S>&quot;PostgreSQL&quot;</S>
     <P>],</P>
   </>,
   <>
     {"  "}
     {key("motto")}
-    <P>:</P> <S>&quot;One line of code at a time&quot;</S>
+    <P>:</P> <S>&quot;Build, test, improve&quot;</S>
     <P>,</P>
   </>,
   <>

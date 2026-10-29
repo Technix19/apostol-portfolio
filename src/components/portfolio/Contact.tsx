@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, type FormEvent, type InputHTMLAttributes } from "react"
-import { ArrowUp, CheckCircle2, ChevronDown, Github, Linkedin, Loader2, Mail, Send } from "lucide-react"
+import { ArrowUp, CheckCircle2, ChevronDown, Github, Loader2, Mail, Send } from "lucide-react"
 import { gsap, useGSAP, SplitText, ScrollTrigger, MOTION_OK, scrollToTarget } from "@/lib/gsap"
 import { EMAIL, socials } from "@/data/portfolio"
 import { cn } from "@/lib/utils"
@@ -65,15 +65,12 @@ export function Contact() {
 
         <div className="contact-copy space-y-6 text-lg leading-relaxed text-gray-300 md:text-xl">
           <p>
-            Looking for someone who can <span className="font-semibold text-white">design</span>,{" "}
-            <span className="font-semibold text-white">develop</span> and{" "}
-            <span className="font-semibold text-white">deliver</span>? I&apos;m always open to collaborating on{" "}
-            <span className="font-semibold text-white">innovative projects</span> that push boundaries and make an
-            impact.
+            I&apos;m interested in <span className="font-semibold text-white">AI development</span>,
+             machine learning, and opportunities to work on meaningful software with experienced teams.
           </p>
           <p className="text-gray-400">
-            Ready to bring your ideas to life? Drop me a line with your project details and let&apos;s build something
-            amazing together.
+            If you have an internship opportunity or a project where I could contribute and learn,
+             I&apos;d be happy to connect.
           </p>
         </div>
 
@@ -96,11 +93,10 @@ export function Contact() {
 }
 
 const ENQUIRY_TYPES = [
-  "Website Design & Development",
-  "UI/UX Design",
-  "Collaboration on Projects",
-  "Website Projects Implementation",
-  "Help with Personal Portfolio",
+  "Internship Opportunity",
+  "AI or Software Project",
+  "Project Collaboration",
+  "General Question",
   "Something else",
 ] as const
 
@@ -274,11 +270,8 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/10 px-6 py-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
-        <p className="text-sm text-gray-400">© {new Date().getFullYear()} Sazzad Ali. All rights reserved.</p>
+        <p className="text-sm text-gray-400">© {new Date().getFullYear()} Lance Apostol. All rights reserved.</p>
         <div className="flex items-center gap-6">
-          <a href={socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-gray-400 transition-colors hover:text-blue-400">
-            <Linkedin className="h-5 w-5" />
-          </a>
           <a href={socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-gray-400 transition-colors hover:text-purple-400">
             <Github className="h-5 w-5" />
           </a>
