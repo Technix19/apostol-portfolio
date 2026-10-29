@@ -259,7 +259,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               </div>
             </>
           ) : (
-            <div className="h-full animate-pulse bg-gradient-to-br from-neutral-800 to-neutral-900" />
+            <div className="flex h-full items-center justify-center bg-gradient-to-br from-[#141c34] via-[#221742] to-[#101017] px-6 text-center">
+              <span className="max-w-[20ch] text-2xl font-semibold tracking-tight text-white/80">
+                {project.title}
+              </span>
+            </div>
           )}
           <span className="absolute bottom-3 left-4 font-mono text-5xl font-black text-white/15">{pad(index + 1)}</span>
         </div>
@@ -268,6 +272,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <h3 className="mb-2 text-xl font-bold">
             {project.link ? (
               <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
+                {project.title}
+              </a>
+            ) : project.github ? (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
                 {project.title}
               </a>
             ) : (
