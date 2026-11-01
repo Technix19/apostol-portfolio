@@ -46,7 +46,10 @@ export const projects: Project[] = [
     title: "Codely — Adaptive Coding Practice",
     description:
       "Our undergraduate thesis project: a coding practice platform that uses a Random Forest classifier and programming performance metrics to recommend question difficulty.",
+    image: "/codely-dashboard.webp",
+    imageFit: "contain",
     tags: ["Machine Learning", "Python", "Random Forest", "PostgreSQL", "Judge0"],
+    github: "https://github.com/francoiseee/Coding-Simulator",
   },
   {
     title: "EasyBooks — Bookkeeping Dashboard",
