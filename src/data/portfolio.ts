@@ -34,6 +34,7 @@ export type Project = {
   title: string
   description: string
   image?: string
+  imageFit?: "contain" | "cover"
   tags: string[]
   link?: string
   github?: string
@@ -46,6 +47,15 @@ export const projects: Project[] = [
     description:
       "Our undergraduate thesis project: a coding practice platform that uses a Random Forest classifier and programming performance metrics to recommend question difficulty.",
     tags: ["Machine Learning", "Python", "Random Forest", "PostgreSQL", "Judge0"],
+  },
+  {
+    title: "EasyBooks — Bookkeeping Dashboard",
+    description:
+      "A Flutter-based bookkeeping web app for recording sales and expenses, tracking gross profit, viewing daily charts, and generating tax reports. Uses Supabase for authentication and data, with Flutter Web deployed on Vercel.",
+    image: "/easybooks-dashboard.webp",
+    imageFit: "contain",
+    tags: ["Flutter", "Dart", "Supabase", "Vercel", "Financial Reporting"],
+    github: "https://github.com/Technix19/repo_easybooks",
   },
   {
     title: "REST API Development",
