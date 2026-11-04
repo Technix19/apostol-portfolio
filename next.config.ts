@@ -6,7 +6,7 @@ import type { NextConfig } from "next";
  *  - GitHub Pages (GITHUB_PAGES=true): static export served from /<repo-name>.
  */
 const isGithubPages = process.env.GITHUB_PAGES === "true";
-const basePath = isGithubPages ? "/sazzadali-portfolio" : "";
+const basePath = isGithubPages ? "/apostol-portfolio" : "";
 
 const nextConfig: NextConfig = {
   ...(isGithubPages && {
