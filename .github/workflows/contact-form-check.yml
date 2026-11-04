@@ -71,9 +71,12 @@ jobs:
               await route.fulfill({status:count===1?400:200,contentType:'application/json',body:JSON.stringify(count===1?{errors:[{message:'Invalid test form'}]}:{ok:true})});
             });
             await page.getByRole('button',{name:/Send message/}).click();
-            const error=page.getByRole('alert');
-            await error.waitFor();
-            assert.match(await error.innerText(),/could not accept/i);
+            await page.waitForFunction(
+              () => document.querySelector('form [role="alert"]')?.textContent?.includes('Invalid test form'),
+              null, {timeout:15000}
+            );
+            const error=page.locator('form [role="alert"]');
+            assert.match((await error.textContent()) ?? '',/Invalid test form/);
             const draft=error.getByRole('link',{name:'Open an email draft'});
             assert.match(await draft.getAttribute('href'),/^mailto:lanceapostol04@gmail.com\?/);
             assert.equal(await page.getByLabel(/First name/i).inputValue(),'Test');
