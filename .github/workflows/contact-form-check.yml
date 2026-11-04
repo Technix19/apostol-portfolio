@@ -27,11 +27,11 @@ jobs:
         run: npm run lint
       - name: Verify Next.js production build with browser form key
         env:
-          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ci-test-public-key
+          NEXT_PUBLIC_FORMSPREE_FORM_ID: ci-test-form-id
         run: npm run build
       - name: Verify static GitHub Pages export without key
         env:
-          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ""
+          NEXT_PUBLIC_FORMSPREE_FORM_ID: ""
         run: npm run build:pages
       - name: Install test-only Playwright
         run: |
@@ -40,7 +40,7 @@ jobs:
       - name: Browser-test provider errors and success (mocked, no email sent)
         shell: bash
         env:
-          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ci-test-public-key
+          NEXT_PUBLIC_FORMSPREE_FORM_ID: ci-test-form-id
         run: |
           set -euo pipefail
           npm run dev -- --hostname 127.0.0.1 --port 3100 > "$RUNNER_TEMP/next.log" 2>&1 &
@@ -62,14 +62,13 @@ jobs:
             await page.getByLabel(/What can I help with/i).selectOption('General Question');
             await page.getByLabel('Message').fill('A test message — no email should be delivered from CI.');
             let count=0;
-            await page.route('https://api.web3forms.com/submit',async route=>{
+            await page.route('https://formspree.io/f/ci-test-form-id',async route=>{
               count+=1;
-              const data=JSON.parse(route.request().postData());
-              assert.equal(data.access_key,'ci-test-public-key');
-              assert.equal(data.email,'visitor@example.com');
-              assert.equal(data.name,'Test Visitor');
-              assert.equal(data.enquiry_type,'General Question');
-              await route.fulfill({status:count===1?400:200,contentType:'application/json',body:JSON.stringify(count===1?{success:false,message:'Invalid test key'}:{success:true,message:'Email sent successfully!'})});
+              const data=route.request().postData() ?? '';
+              assert.match(data,/visitor@example.com/);
+              assert.match(data,/Test Visitor/);
+              assert.match(data,/General Question/);
+              await route.fulfill({status:count===1?400:200,contentType:'application/json',body:JSON.stringify(count===1?{errors:[{message:'Invalid test form'}]}:{ok:true})});
             });
             await page.getByRole('button',{name:/Send message/}).click();
             const error=page.getByRole('alert');
