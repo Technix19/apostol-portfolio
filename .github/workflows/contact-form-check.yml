@@ -67,7 +67,7 @@ jobs:
             await page.route('https://formspree.io/f/ci-test-form-id',async route=>{
               count+=1;
               sentData=route.request().postData() ?? '';
-              await route.fulfill({status:count===1?400:200,contentType:'application/json',body:JSON.stringify(count===1?{errors:[{message:'Invalid test form'}]}:{ok:true})});
+              await route.fulfill({status:count===1?400:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'http://127.0.0.1:3100'},body:JSON.stringify(count===1?{errors:[{message:'Invalid test form'}]}:{ok:true})});
             });
             console.log('BEFORE_CLICK', JSON.stringify({button:await page.locator('form button[type="submit"]').textContent(), valid:await page.locator('form').evaluate(x=>x.checkValidity())}));
             await page.getByRole('button',{name:/Send message/}).click();
