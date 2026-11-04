@@ -69,7 +69,10 @@ jobs:
               sentData=route.request().postData() ?? '';
               await route.fulfill({status:count===1?400:200,contentType:'application/json',body:JSON.stringify(count===1?{errors:[{message:'Invalid test form'}]}:{ok:true})});
             });
+            console.log('BEFORE_CLICK', JSON.stringify({button:await page.locator('form button[type="submit"]').textContent(), valid:await page.locator('form').evaluate(x=>x.checkValidity())}));
             await page.getByRole('button',{name:/Send message/}).click();
+            await page.waitForTimeout(1500);
+            console.log('AFTER_CLICK', JSON.stringify({count, url:page.url(), text:(await page.locator('form').textContent())?.slice(-400)}));
             await page.waitForFunction(
               () => document.querySelector('form [role="alert"]')?.textContent?.includes('Invalid test form'),
               null, {timeout:15000}
