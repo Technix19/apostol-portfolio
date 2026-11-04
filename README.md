@@ -87,7 +87,18 @@ The workflow in `.github/workflows/deploy-pages.yml` automatically publishes a s
 | Search/SEO metadata | `src/app/layout.tsx` |
 | Project screenshots and other assets | `public/` |
 
-The contact form uses [FormSubmit](https://formsubmit.co/) and requires a one-time email activation before it can deliver enquiries. The `/cv` page is currently a placeholder while an updated résumé is prepared.
+### Contact form delivery
+
+The contact form uses [Web3Forms](https://web3forms.com/) to deliver enquiries to the portfolio owner's verified email. It works from the browser on both Vercel and GitHub Pages; no server or database is required.
+
+1. Open [Web3Forms](https://web3forms.com/), enter the destination email address, and complete the email verification to receive an **Access Key**.
+2. In the **Vercel project**, add `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` to **Production** environment variables (type **Config**), paste that Access Key, and redeploy. The `NEXT_PUBLIC_` prefix is intentional; Web3Forms uses a **public browser-side key**, not a secret server API key.
+3. For the **GitHub Pages mirror**, add a GitHub repository **Actions Variable** named `WEB3FORMS_ACCESS_KEY` in Settings → Secrets and variables → Actions → Variables. Run **Deploy to GitHub Pages** again. The workflow injects it as `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` during the static export.
+4. Submit one test enquiry using the published Vercel site. Verify that the form shows success **and** that the email arrives. Check Spam/Promotions if needed. Repeat on GitHub Pages if you use the mirror.
+
+If no access key is set, the contact form deliberately opens a **pre-filled email draft** rather than claiming a message was delivered. If the provider rejects a submission, the form keeps the entered details, explains the error, and provides a draft-email fallback.
+
+The former FormSubmit integration was removed after a controlled diagnostic request received HTTP 403. **No email delivery is claimed until a valid Web3Forms key is configured and a real message is received.** The `/cv` page is currently a placeholder while an updated résumé is prepared.
 
 ## Get in touch
 
