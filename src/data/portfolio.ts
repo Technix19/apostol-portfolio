@@ -50,6 +50,7 @@ export const projects: Project[] = [
     imageFit: "contain",
     tags: ["Machine Learning", "Python", "Random Forest", "PostgreSQL", "Judge0"],
     github: "https://github.com/francoiseee/Coding-Simulator",
+    link: "https://coding-simulator-eight.vercel.app/",
   },
   {
     title: "EasyBooks — Bookkeeping Dashboard",
@@ -59,6 +60,7 @@ export const projects: Project[] = [
     imageFit: "contain",
     tags: ["Flutter", "Dart", "Supabase", "Vercel", "Financial Reporting"],
     github: "https://github.com/Technix19/repo_easybooks",
+    link: "https://easybooks-zeta.vercel.app/",
   },
   {
     title: "Barkada League",
