@@ -1,0 +1,26 @@
+name: Contact form provider diagnostic
+on:
+  push:
+    branches: [fix/contact-form-delivery-20261104]
+    paths: [.github/workflows/contact-diagnostic.yml]
+permissions:
+  contents: read
+jobs:
+  provider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Run one controlled FormSubmit submission and report status
+        shell: bash
+        run: |
+          set -euo pipefail
+          response=$(curl --silent --show-error --max-time 30 \
+            --request POST "https://formsubmit.co/ajax/lanceapostol04@gmail.com" \
+            --header "Content-Type: application/json" \
+            --header "Accept: application/json" \
+            --header "Origin: https://apostol-portfolio-ashy.vercel.app" \
+            --header "Referer: https://apostol-portfolio-ashy.vercel.app/" \
+            --data '{"name":"Barkada portfolio contact test","email":"portfolio-check@example.com","message":"One controlled test submission to diagnose the contact form. No reply needed.","_subject":"Portfolio form delivery diagnostic (one time)","_captcha":"false"}' \
+            --write-out '%{http_code}' --output response.json)
+          echo "HTTP $response"
+          node -e 'const fs=require("fs"); const s=fs.readFileSync("response.json","utf8");try{const v=JSON.parse(s); console.log("Provider result:",String(v.success),"Message:",String(v.message||"").replaceAll(/[^\s@]+@[^\s@]+/g,"[redacted]"));}catch(e){console.log("Non-JSON provider response (length):",s.length)}'
