@@ -5,7 +5,8 @@ import { gsap, useGSAP, ScrollTrigger, MOTION_OK } from "@/lib/gsap"
 import { PERSON, deviconUrl, skillClusters, techIcons } from "@/data/portfolio"
 import { SectionHeading } from "./SectionHeading"
 
-const INVERT = new Set(["nextjs", "express", "vercel"])
+// These Devicon logos are near-black by default; invert them on dark backgrounds.
+const INVERT = new Set(["nextjs", "express", "github", "vercel"])
 const ALIAS: Record<string, string> = { "Kotlin with Compose": "kotlin" }
 
 /** Devicon for a skill name, if there is one. */
