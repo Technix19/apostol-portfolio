@@ -101,12 +101,12 @@ const ENQUIRY_TYPES = [
 ] as const
 
 /**
- * Web3Forms accepts public browser-side access keys and works on both
- * Vercel and the static GitHub Pages mirror. Until a key is configured,
+ * Formspree accepts browser-side form IDs and works on both Vercel
+ * and the static GitHub Pages mirror. Until a form ID is configured,
  * offer a pre-filled mailto draft instead of pretending to send an email.
  */
-const FORM_ENDPOINT = "https://api.web3forms.com/submit"
-const FORM_ACCESS_KEY = (process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "").trim()
+const FORM_ID = (process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "").trim()
+const FORM_ENDPOINT = FORM_ID ? `https://formspree.io/f/${FORM_ID}` : ""
 
 type Status = "idle" | "sending" | "sent" | "error" | "draft"
 
@@ -170,7 +170,7 @@ function EnquiryForm() {
 
     // GitHub Pages or Vercel without an access key: the visitor can still
     // contact the owner using their email application, without losing input.
-    if (!FORM_ACCESS_KEY) {
+    if (!FORM_ID) {
       setStatus("draft")
       window.location.href = fallback
       return
@@ -178,23 +178,26 @@ function EnquiryForm() {
 
     setStatus("sending")
     try {
+      const submission = new FormData()
+      submission.set("name", `${firstName} ${lastName}`)
+      submission.set("email", email)
+      submission.set("enquiry_type", topic)
+      submission.set("message", notes || "No additional message included.")
+      submission.set("_subject", `Portfolio enquiry: ${topic}`)
+
       const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: FORM_ACCESS_KEY,
-          name: `${firstName} ${lastName}`,
-          email,
-          enquiry_type: topic,
-          message: notes || "No additional message included.",
-          subject: `Portfolio enquiry: ${topic}`,
-          from_name: "Lance Apostol Portfolio",
-          botcheck: false,
-        }),
+        headers: { Accept: "application/json" },
+        body: submission,
       })
-      const result: { success?: boolean; message?: string } = await response.json()
-      if (!response.ok || result.success !== true) {
-        throw new Error(response.status === 429 ? "Too many submissions right now. Please try again later." : "The email service could not accept your message.")
+      const result: { ok?: boolean; error?: string; errors?: { message?: string }[] } | null =
+        await response.json().catch(() => null)
+      if (!response.ok || result?.ok === false || result?.error || result?.errors?.length) {
+        throw new Error(
+          response.status === 429
+            ? "Too many submissions right now. Please try again later."
+            : result?.errors?.[0]?.message || "The email service could not accept your message.",
+        )
       }
       setStatus("sent")
       form.reset()
@@ -306,7 +309,7 @@ function EnquiryForm() {
               </a>
               .
             </p>
-          ) : !FORM_ACCESS_KEY ? (
+          ) : !FORM_ID ? (
             <p className="text-gray-400">The form will open a draft in your email app for you to send.</p>
           ) : (
             <p className="text-gray-500">Your details are only used to reply to you.</p>
@@ -319,7 +322,7 @@ function EnquiryForm() {
             className="flex w-full items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-8 py-3.5 text-base font-semibold text-[#fff] shadow-lg shadow-purple-500/25 transition-shadow hover:shadow-purple-500/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-400 disabled:opacity-60 sm:w-auto"
           >
             {status === "sending" ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
-            {status === "sending" ? "Sending…" : FORM_ACCESS_KEY ? "Send message" : "Open email app"}
+            {status === "sending" ? "Sending…" : FORM_ID ? "Send message" : "Open email app"}
           </button>
         </Magnetic>
       </div>
