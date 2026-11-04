@@ -36,7 +36,7 @@ jobs:
 
       - name: Build static export
         env:
-          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ vars.WEB3FORMS_ACCESS_KEY }}
+          NEXT_PUBLIC_FORMSPREE_FORM_ID: ${{ vars.FORMSPREE_FORM_ID }}
         run: npm run build:pages
 
       - name: Upload artifact
