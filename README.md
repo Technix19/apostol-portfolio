@@ -87,7 +87,20 @@ The workflow in `.github/workflows/deploy-pages.yml` automatically publishes a s
 | Search/SEO metadata | `src/app/layout.tsx` |
 | Project screenshots and other assets | `public/` |
 
-The contact form uses [FormSubmit](https://formsubmit.co/) and requires a one-time email activation before it can deliver enquiries. The `/cv` page is currently a placeholder while an updated résumé is prepared.
+### Contact form delivery
+
+The contact form uses [Formspree](https://formspree.io/) to deliver enquiries to a verified email address. The provider handles email notifications and the browser can submit from either Vercel or the static GitHub Pages mirror.
+
+1. Create a free [Formspree account](https://formspree.io/register) using the mailbox where you want to receive portfolio messages. Create a new form (e.g. **Portfolio Contact**) and copy the ID from its endpoint, `https://formspree.io/f/FORM_ID`.
+2. Under **Vercel → Project → Settings → Environment Variables**, add `NEXT_PUBLIC_FORMSPREE_FORM_ID` with the form ID, for **Production**, using **Config** (not Secret), then redeploy the portfolio. This is a *public form identifier*, not a password or API token.
+3. Under **GitHub → Repository Settings → Secrets and variables → Actions → Variables**, add the repository variable `FORMSPREE_FORM_ID` with the same ID. Rerun **Deploy to GitHub Pages** to update the static mirror.
+4. Send one genuine test from the deployed portfolio and verify that Formspree reports the submission and the message arrives in your inbox (check spam if necessary).
+
+**Fallback:** If no form ID is configured, the contact form opens a pre-filled draft in the visitor's email application rather than falsely claiming a message was sent. Failed online submissions keep all entered information and offer a direct-email draft link.
+
+The prior FormSubmit AJAX integration was removed after a controlled diagnostic request returned HTTP 403. A successful build does not prove email delivery; confirm it with a real test using your Formspree account.
+
+The `/cv` page is currently a placeholder while an updated résumé is prepared.
 
 ## Get in touch
 

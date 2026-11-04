@@ -101,12 +101,26 @@ const ENQUIRY_TYPES = [
 ] as const
 
 /**
- * Static-host friendly: posts straight to FormSubmit, which relays the enquiry to EMAIL.
- * (The very first submission triggers a one-time activation email to that inbox.)
+ * Formspree accepts browser-side form IDs and works on both Vercel
+ * and the static GitHub Pages mirror. Until a form ID is configured,
+ * offer a pre-filled mailto draft instead of pretending to send an email.
  */
-const FORM_ENDPOINT = `https://formsubmit.co/ajax/${EMAIL}`
+const FORM_ID = (process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "").trim()
+const FORM_ENDPOINT = FORM_ID ? `https://formspree.io/f/${FORM_ID}` : ""
 
-type Status = "idle" | "sending" | "sent" | "error"
+type Status = "idle" | "sending" | "sent" | "error" | "draft"
+
+function emailDraft(firstName: string, lastName: string, email: string, topic: string, notes: string) {
+  const subject = `Portfolio enquiry: ${topic}`
+  const body = [
+    `From: ${firstName} ${lastName}`,
+    `Reply to: ${email}`,
+    `Topic: ${topic}`,
+    "",
+    notes || "I'd like to get in touch about a project or opportunity.",
+  ].join("\n")
+  return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
 
 const FIELD =
   "w-full rounded-xl border border-white/15 bg-neutral-950 px-4 text-base text-white outline-none transition-[border-color,box-shadow] placeholder:text-gray-500 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/15"
@@ -126,37 +140,70 @@ function Field({ label, className, ...props }: { label: string } & InputHTMLAttr
 function EnquiryForm() {
   const [type, setType] = useState<(typeof ENQUIRY_TYPES)[number] | null>(null)
   const [status, setStatus] = useState<Status>("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [draftUrl, setDraftUrl] = useState(`mailto:${EMAIL}`)
   const somethingElse = type === "Something else"
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    if (status === "sending") return
+
     const form = e.currentTarget
-    const data = Object.fromEntries(new FormData(form))
-    if (data._honey) return // bots fill hidden fields; humans don't
+    const values = new FormData(form)
+    if (values.get("_honey")) return // honeypot: silently ignore bots
+
+    const firstName = String(values.get("firstName") ?? "").trim()
+    const lastName = String(values.get("lastName") ?? "").trim()
+    const email = String(values.get("email") ?? "").trim()
+    const topic = String(values.get("enquiryType") ?? "").trim()
+    const notes = String(values.get("notes") ?? "").trim()
+
+    if (!firstName || !lastName || !email || !ENQUIRY_TYPES.some((item) => item === topic)) {
+      setErrorMessage("Please complete the required fields and choose a topic.")
+      setStatus("error")
+      return
+    }
+
+    const fallback = emailDraft(firstName, lastName, email, topic, notes)
+    setDraftUrl(fallback)
+    setErrorMessage("")
+
+    // GitHub Pages or Vercel without an access key: the visitor can still
+    // contact the owner using their email application, without losing input.
+    if (!FORM_ID) {
+      setStatus("draft")
+      window.location.href = fallback
+      return
+    }
 
     setStatus("sending")
     try {
-      const res = await fetch(FORM_ENDPOINT, {
+      const submission = new FormData()
+      submission.set("name", `${firstName} ${lastName}`)
+      submission.set("email", email)
+      submission.set("enquiry_type", topic)
+      submission.set("message", notes || "No additional message included.")
+      submission.set("_subject", `Portfolio enquiry: ${topic}`)
+
+      const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          "First Name": data.firstName,
-          "Last Name": data.lastName,
-          "Contact Email": data.email,
-          "Enquiry Type": type,
-          Notes: data.notes || "—",
-          _subject: `Portfolio enquiry: ${type} — ${data.firstName} ${data.lastName}`,
-          _replyto: data.email,
-          _template: "table",
-          _captcha: "false",
-        }),
+        headers: { Accept: "application/json" },
+        body: submission,
       })
-      const json = await res.json().catch(() => ({}))
-      if (!res.ok || String(json.success) === "false") throw new Error(json.message)
+      const result: { ok?: boolean; error?: string; errors?: { message?: string }[] } | null =
+        await response.json().catch(() => null)
+      if (!response.ok || result?.ok === false || result?.error || result?.errors?.length) {
+        throw new Error(
+          response.status === 429
+            ? "Too many submissions right now. Please try again later."
+            : result?.errors?.[0]?.message || "The email service could not accept your message.",
+        )
+      }
       setStatus("sent")
       form.reset()
       setType(null)
-    } catch {
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Unable to reach the email service.")
       setStatus("error")
     }
   }
@@ -245,8 +292,25 @@ function EnquiryForm() {
         <div className="text-sm">
           {status === "error" ? (
             <p role="alert" className="text-red-400">
-              Something went wrong. Please try again or email me directly.
+              {errorMessage || "Your message could not be delivered."}{" "}
+              <a href={draftUrl} className="font-semibold underline underline-offset-2 hover:text-red-300">
+                Open an email draft
+              </a>
+              {" "}or{" "}
+              <a href={socials.email} className="font-semibold underline underline-offset-2 hover:text-red-300">
+                email me directly
+              </a>.
             </p>
+          ) : status === "draft" ? (
+            <p role="status" className="text-amber-300">
+              Your email app should open with a draft. Please send it from there.{" "}
+              <a href={draftUrl} className="font-semibold underline underline-offset-2 hover:text-amber-200">
+                Open the draft again
+              </a>
+              .
+            </p>
+          ) : !FORM_ID ? (
+            <p className="text-gray-400">The form will open a draft in your email app for you to send.</p>
           ) : (
             <p className="text-gray-500">Your details are only used to reply to you.</p>
           )}
@@ -258,7 +322,7 @@ function EnquiryForm() {
             className="flex w-full items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-8 py-3.5 text-base font-semibold text-[#fff] shadow-lg shadow-purple-500/25 transition-shadow hover:shadow-purple-500/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-400 disabled:opacity-60 sm:w-auto"
           >
             {status === "sending" ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
-            {status === "sending" ? "Sending…" : "Send message"}
+            {status === "sending" ? "Sending…" : FORM_ID ? "Send message" : "Open email app"}
           </button>
         </Magnetic>
       </div>
