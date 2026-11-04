@@ -61,6 +61,16 @@ export const projects: Project[] = [
     github: "https://github.com/Technix19/repo_easybooks",
   },
   {
+    title: "Barkada League",
+    description:
+      "A full-stack web app for friendly competitions. Create public or private leagues, manage players and seasons, record match scores, and track live leaderboards and match history.",
+    image: "/barkada-league.webp",
+    imageFit: "cover",
+    tags: ["React", "Vite", "Node.js", "Express", "PostgreSQL", "Supabase"],
+    github: "https://github.com/Technix19/Barkada_League",
+    link: "https://barkada-league.vercel.app/",
+  },
+  {
     title: "REST API Development",
     description:
       "An academic backend project implementing CRUD endpoints with Node.js and Express, PostgreSQL integration, and in-memory IP rate limiting.",
