@@ -55,7 +55,10 @@ jobs:
           const browser = await chromium.launch();
           try {
             const page = await browser.newPage({ viewport:{width:1280,height:900}, reducedMotion:'reduce' });
-            await page.goto('http://127.0.0.1:3100/', {waitUntil:'domcontentloaded'});
+            await page.goto('http://127.0.0.1:3100/', {waitUntil:'networkidle', timeout:60000});
+            // Wait for the Next.js client bundle to hydrate before interacting
+            // with a server-rendered form; otherwise onSubmit is not attached.
+            await page.waitForTimeout(1500);
             await page.getByRole('heading',{name:'Send me a message'}).waitFor();
             await page.getByLabel(/First name/i).fill('Test');
             await page.getByLabel(/Last name/i).fill('Visitor');
