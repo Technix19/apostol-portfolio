@@ -192,6 +192,7 @@ export function ProjectLibrary() {
                   {project.image ? (
                     <Image
                       src={asset(project.image)}
+                      unoptimized
                       alt={`${project.title} application preview`}
                       fill
                       sizes="(min-width: 768px) 48vw, 100vw"

@@ -102,6 +102,7 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
           {project.image ? (
             <Image
               src={asset(project.image)}
+                      unoptimized
               alt={`${project.title} application screenshot`}
               fill
               priority

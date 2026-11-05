@@ -48,7 +48,7 @@ export const projects: Project[] = [
     title: "SourceMind — Evidence-First Document AI",
     description:
       "A document question-answering app that helps you research PDFs and notes with source-backed answers, page-level citations, and optional AI generation. Built with FastAPI, Next.js, Supabase, and retrieval evaluation.",
-    image: "/sourcemind-dashboard.webp",
+    image: "/sourcemind-dashboard-hq.png",
     imageFit: "contain",
     tags: ["Python", "FastAPI", "Next.js", "Supabase", "RAG", "PostgreSQL"],
     github: "https://github.com/Technix19/sourcemind",
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     title: "Personal Portfolio",
     description:
       "My developer portfolio, customized from an open-source Next.js and GSAP template to showcase my academic work, technical interests, and journey into AI development.",
-    image: "/personal-portfolio-hero.webp",
+    image: "/personal-portfolio-hero-hq.webp",
     imageFit: "contain",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP"],
     github: "https://github.com/Technix19/apostol-portfolio",

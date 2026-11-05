@@ -231,6 +231,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               <div className="project-img absolute -inset-x-[10%] inset-y-0">
                 <Image
                   src={asset(project.image)}
+                      unoptimized
                   alt={project.title}
                   fill
                   sizes="(min-width: 1280px) 520px, (min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
