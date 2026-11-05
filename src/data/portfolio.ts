@@ -12,6 +12,7 @@ export const PERSON = {
 } as const
 
 export const EMAIL = "lanceapostol04@gmail.com"
+export const PHONE = "09327688198"
 
 /** No finalized PDF is available yet; the CV button is intentionally hidden. */
 export const CV_PATH = ""
@@ -19,6 +20,7 @@ export const CV_PATH = ""
 export const socials = {
   github: "https://github.com/Technix19",
   email: `mailto:${EMAIL}`,
+  phone: "tel:+639327688198",
 }
 
 export const navItems = ["About", "Projects", "Skills", "Contact"] as const

@@ -1,9 +1,9 @@
 "use client"
 
 import { useRef, useState, type FormEvent, type InputHTMLAttributes } from "react"
-import { ArrowUp, CheckCircle2, ChevronDown, Github, Loader2, Mail, Send } from "lucide-react"
+import { ArrowUp, CheckCircle2, ChevronDown, Github, Loader2, Mail, Phone, Send } from "lucide-react"
 import { gsap, useGSAP, SplitText, ScrollTrigger, MOTION_OK, scrollToTarget } from "@/lib/gsap"
-import { EMAIL, socials } from "@/data/portfolio"
+import { EMAIL, PHONE, socials } from "@/data/portfolio"
 import { cn } from "@/lib/utils"
 import { Magnetic } from "./Magnetic"
 
@@ -76,16 +76,23 @@ export function Contact() {
 
         <div className="contact-cta mt-14">
           <EnquiryForm />
-          <p className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm leading-none text-gray-500">
-            <span>Prefer email?</span>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm leading-none text-gray-500">
+            <span>Prefer to reach me directly?</span>
             <a
               href={socials.email}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-neutral-900 px-4 py-2.5 leading-none text-gray-200 transition-colors hover:border-purple-400/60 hover:text-purple-400"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-neutral-900 px-4 py-2.5 leading-none text-gray-200 transition-colors hover:border-purple-400/60 hover:text-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400"
             >
               <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
               {EMAIL}
             </a>
-          </p>
+            <a
+              href={socials.phone}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-neutral-900 px-4 py-2.5 leading-none text-gray-200 transition-colors hover:border-purple-400/60 hover:text-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400"
+            >
+              <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+              {PHONE}
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -341,6 +348,9 @@ export function Footer() {
           </a>
           <a href={socials.email} aria-label="Email" className="text-gray-400 transition-colors hover:text-pink-400">
             <Mail className="h-5 w-5" />
+          </a>
+          <a href={socials.phone} aria-label={`Call ${PHONE}`} className="text-gray-400 transition-colors hover:text-purple-400">
+            <Phone className="h-5 w-5" aria-hidden="true" />
           </a>
         </div>
       </div>
