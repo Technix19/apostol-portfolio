@@ -74,7 +74,7 @@ export const projects: Project[] = [
     imageFit: "contain",
     tags: ["Flutter", "Dart", "Supabase", "Vercel", "Financial Reporting"],
     github: "https://github.com/Technix19/repo_easybooks",
-    link: "https://easybooks-ecqse3l04-codely4.vercel.app/",
+    link: "https://easybooks-1ksephje2-codely4.vercel.app/",
   },
   {
     slug: "barkada-league",
