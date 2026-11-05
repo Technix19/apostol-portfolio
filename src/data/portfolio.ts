@@ -88,13 +88,6 @@ export const projects: Project[] = [
     link: "https://barkada-league.vercel.app/",
   },
   {
-    slug: "rest-api-development",
-    title: "REST API Development",
-    description:
-      "An academic backend project implementing CRUD endpoints with Node.js and Express, PostgreSQL integration, and in-memory IP rate limiting.",
-    tags: ["Node.js", "Express", "PostgreSQL", "REST API"],
-  },
-  {
     slug: "personal-portfolio",
     title: "Personal Portfolio",
     description:
