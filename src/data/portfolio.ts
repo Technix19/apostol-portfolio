@@ -70,11 +70,11 @@ export const projects: Project[] = [
     title: "EasyBooks — Bookkeeping Dashboard",
     description:
       "A Flutter-based bookkeeping web app for recording sales and expenses, tracking gross profit, viewing daily charts, and generating tax reports. Uses Supabase for authentication and data, with Flutter Web deployed on Vercel.",
-    image: "/easybooks-dashboard.webp",
+    image: "/easybooks-dashboard-2026.webp",
     imageFit: "contain",
     tags: ["Flutter", "Dart", "Supabase", "Vercel", "Financial Reporting"],
     github: "https://github.com/Technix19/repo_easybooks",
-    link: "https://easybooks-zeta.vercel.app/",
+    link: "https://easybooks-pooc0bgde-codely4.vercel.app/",
   },
   {
     slug: "barkada-league",
