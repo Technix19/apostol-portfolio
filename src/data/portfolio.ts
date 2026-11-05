@@ -44,6 +44,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "sourcemind",
+    title: "SourceMind — Evidence-First Document AI",
+    description:
+      "A document question-answering app that helps you research PDFs and notes with source-backed answers, page-level citations, and optional AI generation. Built with FastAPI, Next.js, Supabase, and retrieval evaluation.",
+    image: "/sourcemind-dashboard.webp",
+    imageFit: "contain",
+    tags: ["Python", "FastAPI", "Next.js", "Supabase", "RAG", "PostgreSQL"],
+    github: "https://github.com/Technix19/sourcemind",
+    link: "https://sourcemind-eight.vercel.app/",
+  },
+  {
     slug: "codely",
     title: "Codely — Adaptive Coding Practice",
     description:

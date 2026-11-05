@@ -21,6 +21,51 @@ export type ProjectDetail = {
 export const projectCategories = ["All", "AI & ML", "Full Stack", "Backend", "Frontend"] as const
 
 export const projectDetails: Record<string, ProjectDetail> = {
+  sourcemind: {
+    category: "AI & ML",
+    context: "Personal project · Document question-answering system",
+    headline: "Answers from your own documents, with evidence you can inspect.",
+    problem:
+      "AI-generated explanations are difficult to trust when you cannot trace a claim back to the passage it came from. SourceMind focuses on making source material searchable and the evidence behind answers accessible.",
+    approach:
+      "The application combines a Next.js research workspace with a Python FastAPI service for document ingestion and retrieval. Supabase provides email-and-password authentication, user-scoped PostgreSQL records, and private file storage. It offers keyword search, optional meaning-based retrieval where enabled, and source-only or model-generated responses with linked evidence.",
+    implementation: [
+      {
+        title: "Page-aware ingestion and private storage",
+        description:
+          "Extracts and indexes text from PDFs, TXT, and Markdown files while retaining page references. Document metadata and text are scoped to the signed-in user with Supabase Row Level Security, and originals are kept in private storage.",
+      },
+      {
+        title: "Retrieval with visible citations",
+        description:
+          "Uses TF-IDF keyword retrieval and, where configured, embedding-based search with pgvector. Results include relevant passages, document names, and page numbers, with links to open stored originals.",
+      },
+      {
+        title: "Optional grounded AI responses",
+        description:
+          "Supports evidence-only results as well as optional model-generated answers. Citation references are validated against retrieved passages, and the interface can signal when available evidence is insufficient.",
+      },
+      {
+        title: "Reproducible retrieval evaluation",
+        description:
+          "Includes a labeled question set and a dashboard reporting retrieval measures such as Recall@k and MRR. The evaluation also documents uncertainty, sample-size limits, and cases where retrieval fails.",
+      },
+    ],
+    features: [
+      "Email-and-password accounts with user-scoped research workspaces",
+      "Upload and organize text-based PDF, TXT, and Markdown documents",
+      "Keyword search and optional semantic retrieval",
+      "Source-only responses or optional AI-generated answers",
+      "Clickable source excerpts with original PDF page references",
+      "Evaluation dashboard with retrieval comparisons and limitations",
+    ],
+    engineeringFocus: [
+      "Protecting user documents with authentication, RLS, and private file access",
+      "Making retrieval results traceable instead of presenting unsupported model claims",
+      "Comparing retrieval methods without overstating small evaluation results",
+      "Keeping optional generation separate from core evidence retrieval",
+    ],
+  },
   codely: {
     category: "AI & ML",
     context: "Undergraduate thesis · Team project",
