@@ -60,5 +60,6 @@ screenshots, and challenges only once reviewed and corroborated.
    or remain hidden.
 8. Merge the PR after checks pass; the existing GitHub Pages workflow
    publishes the static export on `main`.
+
 Do not add unsupported `Link` routes for private projects without a public demo.
 The case-study page remains useful even without a live or GitHub link.
