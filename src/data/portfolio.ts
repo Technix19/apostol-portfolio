@@ -31,6 +31,7 @@ export const roles = [
 ]
 
 export type Project = {
+  slug: string
   title: string
   description: string
   image?: string
@@ -43,6 +44,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "codely",
     title: "Codely — Adaptive Coding Practice",
     description:
       "Our undergraduate thesis project: a coding practice platform that uses a Random Forest classifier and programming performance metrics to recommend question difficulty.",
@@ -53,6 +55,7 @@ export const projects: Project[] = [
     link: "https://coding-simulator-eight.vercel.app/",
   },
   {
+    slug: "easybooks",
     title: "EasyBooks — Bookkeeping Dashboard",
     description:
       "A Flutter-based bookkeeping web app for recording sales and expenses, tracking gross profit, viewing daily charts, and generating tax reports. Uses Supabase for authentication and data, with Flutter Web deployed on Vercel.",
@@ -63,6 +66,7 @@ export const projects: Project[] = [
     link: "https://easybooks-zeta.vercel.app/",
   },
   {
+    slug: "barkada-league",
     title: "Barkada League",
     description:
       "A full-stack web app for friendly competitions. Create public or private leagues, manage players and seasons, record match scores, and track live leaderboards and match history.",
@@ -73,12 +77,14 @@ export const projects: Project[] = [
     link: "https://barkada-league.vercel.app/",
   },
   {
+    slug: "rest-api-development",
     title: "REST API Development",
     description:
       "An academic backend project implementing CRUD endpoints with Node.js and Express, PostgreSQL integration, and in-memory IP rate limiting.",
     tags: ["Node.js", "Express", "PostgreSQL", "REST API"],
   },
   {
+    slug: "personal-portfolio",
     title: "Personal Portfolio (In Progress)",
     description:
       "My developer portfolio, customized from an open-source Next.js and GSAP template to showcase my academic work, technical interests, and journey into AI development.",
