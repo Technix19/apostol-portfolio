@@ -153,6 +153,16 @@ export function ProjectLibrary() {
                     >
                       Read case study <ArrowRight size={17} aria-hidden="true" />
                     </Link>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-gray-300 transition-colors hover:text-white"
+                      >
+                        Live site <ArrowUpRight size={17} aria-hidden="true" />
+                      </a>
+                    )}
                     {project.github && (
                       <a
                         href={project.github}
