@@ -2,7 +2,8 @@
 
 import { useRef } from "react"
 import Image from "next/image"
-import { ArrowUpRight, Github } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight, ArrowUpRight, Github } from "lucide-react"
 import { gsap, useGSAP, ScrollTrigger, MOTION_OK } from "@/lib/gsap"
 import { projects, type Project } from "@/data/portfolio"
 import { asset } from "@/lib/utils"
@@ -185,7 +186,13 @@ export function Projects() {
     <section ref={root} id="projects" className="relative px-6 py-10 md:py-14 lg:overflow-x-clip">
       <div className="projects-head mx-auto w-full max-w-7xl">
         <SectionHeading eyebrow="02 — Selected work" lead="My" accent="Projects" lag={false}>
-          A selection of my academic and personal work as I build toward a career in AI development.
+          <p>A selection of my academic and personal work as I build toward a career in AI development.</p>
+          <Link
+            href="/projects"
+            className="relative z-30 mx-auto mt-6 inline-flex min-h-12 items-center gap-2 rounded-full border border-purple-400/60 bg-purple-400/10 px-6 py-3 text-sm font-bold text-purple-300 transition-colors hover:border-purple-400 hover:bg-purple-400 hover:text-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-400"
+          >
+            View all projects <ArrowUpRight size={19} aria-hidden="true" />
+          </Link>
         </SectionHeading>
       </div>
 
@@ -293,6 +300,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               </li>
             ))}
           </ul>
+          <Link
+            href={`/projects/${project.slug}`}
+            className="relative z-30 mt-6 inline-flex min-h-11 w-fit items-center gap-2 text-sm font-semibold text-purple-300 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-400"
+            aria-label={`Read the full case study for ${project.title}`}
+          >
+            Read case study <ArrowRight size={17} aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </article>
