@@ -219,7 +219,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
   },
   "personal-portfolio": {
     category: "Frontend",
-    context: "Personal website · Ongoing improvements",
+    context: "Personal website · Live portfolio",
     headline: "An animated portfolio built to show the work behind the code.",
     problem:
       "A project list alone leaves little room to explain technical decisions, demonstrate outcomes, or show how a developer approaches problems.",
