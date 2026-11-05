@@ -14,6 +14,7 @@ This responsive, interactive portfolio presents my background, featured projects
 
 | Project | Description | Links |
 | --- | --- | --- |
+| **SourceMind — Evidence-First Document AI** | Document research application with retrieval, page-level citations, user-scoped storage, and optional grounded AI answers. | [Live Site](https://sourcemind-eight.vercel.app/) · [Code](https://github.com/Technix19/sourcemind) |
 | **Codely — Adaptive Coding Practice** | Undergraduate thesis platform using a Random Forest classifier and programming-performance metrics to recommend question difficulty. | [Code](https://github.com/francoiseee/Coding-Simulator) |
 | **EasyBooks — Bookkeeping Dashboard** | Flutter web application for tracking sales, expenses, gross profit, and reports, with Supabase authentication and data storage. | [Code](https://github.com/Technix19/repo_easybooks) |
 | **Barkada League** | Full-stack competition manager with public/private leagues, players, seasons, match recording, standings, and match history. | [Live App](https://barkada-league.vercel.app/) · [Code](https://github.com/Technix19/Barkada_League) |
